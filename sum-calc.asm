@@ -212,7 +212,6 @@ main_done:
 ;
 exit:
 	mov eax, SYS_EXIT
-	mov ebx, 0 					; Exit code=0
 	int 0x80					; Call kernel
 
 	section .data
