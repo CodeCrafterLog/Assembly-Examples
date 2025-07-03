@@ -109,7 +109,10 @@ to_string:
 	
 .neg_handle:
 	neg eax               	; make EAX positive
-	mov byte [ecx], '-'   	; store minus
+	push ebx				; Save ebx
+	mov bl, [negSign]		; Use ebx to store the minusSign
+	mov byte [ecx], bl   	; Add minus to buffer
+	pop ebx					; Restore ebx
 	inc ecx               	; advance buffer
 	jmp .ts_start
 
@@ -227,5 +230,3 @@ helloLen equ $ - helloTxt
 
 	section .bss					; Variables here
 stringBuffer resb numSize
-registerBuffer resd 4
-
